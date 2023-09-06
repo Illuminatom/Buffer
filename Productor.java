@@ -1,4 +1,5 @@
-class Productor extends Thread {
+package src;
+public class Productor extends Thread {
     private int id;
     private Bodega bodega;
     private Producto productoActual;
@@ -7,6 +8,7 @@ class Productor extends Thread {
         this.id = id;
         this.bodega = bodega;
     }
+  
 
     @Override
     public void run() {

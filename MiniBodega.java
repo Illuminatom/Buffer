@@ -1,3 +1,5 @@
+package src;
+
 
 public class MiniBodega {
     private Producto producto;

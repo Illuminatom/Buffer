@@ -1,4 +1,6 @@
-class Producto {
+package src;
+
+public class Producto {
     private int id;
     private Productor productor;
     private boolean entregado;
@@ -13,6 +15,7 @@ class Producto {
         this.entregado = true;
         notify();  // notificar al productor
     }
+    
 
     public synchronized void esperarHastaEntrega() throws InterruptedException {
         while (!entregado) {
