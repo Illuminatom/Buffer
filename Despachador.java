@@ -9,14 +9,21 @@ public class Despachador extends Thread {
         this.miniBodega = miniBodega;
     }
 
-	@Override
+    @Override
     public void run() {
         while (true) {
             // Retirar producto de la bodega principal
             Producto producto = bodegaPrincipal.retirar();
 
+            // Si el producto es null, la bodega está vacía, así que hacemos un yield
+            if (producto == null) {
+                Thread.yield();
+                continue;  // Vuelve al inicio del ciclo para intentar retirar de nuevo
+            }
+
             // Colocar el producto en la mini bodega
             miniBodega.colocar(producto);
         }
     }
+
 }

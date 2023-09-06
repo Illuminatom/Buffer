@@ -19,7 +19,7 @@ public class Repartidor extends Thread {
 
             // Simular el tiempo de entrega
             try {
-                int tiempoEntrega = 3000 + random.nextInt(8000); // Valor entre 3000ms (3s) y 11000ms (11s) - para obtener rango [3,10] segundos.
+                int tiempoEntrega = 3000 + random.nextInt(7001); // Valor entre 3000ms (3s) y 11000ms (11s) - para obtener rango [3,10] segundos.
                 Thread.sleep(tiempoEntrega);
             } catch (InterruptedException e) {
                 e.printStackTrace();

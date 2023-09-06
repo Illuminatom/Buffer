@@ -25,18 +25,14 @@ public class Bodega {
     }
     
     public synchronized Producto retirar() {
-        while (productos.isEmpty()) {
-            try {
-                // Espera hasta que haya productos en la bodega
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if (productos.isEmpty()) {
+            return null;
         }
         Producto producto = productos.poll();
         notifyAll();  // Notificar a los productores que hay espacio en la bodega
         return producto;
     }
+
 
     public synchronized int getCantidadActual() {
         return productos.size();

@@ -14,7 +14,7 @@ public class MiniBodega {
             }
         }
         this.producto = nuevoProducto;
-        notifyAll();  // Notificar a los repartidores que hay un producto disponible
+        notify();  // Notificar a los repartidores que hay un producto disponible
     }
 
     public synchronized Producto retirar() {
