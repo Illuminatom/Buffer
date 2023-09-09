@@ -1,4 +1,4 @@
-package src;
+
 public class Productor extends Thread {
     private int id;
     private Bodega bodega;
@@ -24,9 +24,9 @@ public class Productor extends Thread {
 
             // Producir un nuevo producto
             productoActual = new Producto(id, this);
-            bodega.agregar(productoActual);
+            bodega.agregar(productoActual, id);
 
-            // Luego, deberías tener lógica para que el Despachador mueva los productos y así sucesivamente.
+            // Luego, deberï¿½as tener lï¿½gica para que el Despachador mueva los productos y asï¿½ sucesivamente.
         }
     }
 }

@@ -1,4 +1,4 @@
-package src;
+
 
 public class Despachador extends Thread {
     private Bodega bodegaPrincipal;
@@ -15,8 +15,9 @@ public class Despachador extends Thread {
             // Retirar producto de la bodega principal
             Producto producto = bodegaPrincipal.retirar();
 
-            // Si el producto es null, la bodega está vacía, así que hacemos un yield
+            // Si el producto es null, la bodega esta vacia, asi que hacemos un yield
             if (producto == null) {
+                System.out.println("No hay objetos en la bodega, esperando...");
                 Thread.yield();
                 continue;  // Vuelve al inicio del ciclo para intentar retirar de nuevo
             }

@@ -1,4 +1,3 @@
-package src;
 
 
 public class MiniBodega {
@@ -7,13 +6,15 @@ public class MiniBodega {
     public synchronized void colocar(Producto nuevoProducto) {
         while (producto != null) {
             try {
-                // Espera hasta que la minibodega esté vacía
+                // Espera hasta que la minibodega este vacia
+                System.out.println("La miniBodega esta vacia, esperando...");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         this.producto = nuevoProducto;
+        System.out.println("Se agrego un producto con id " +nuevoProducto.getId()+"a la miniBodega");
         notify();  // Notificar a los repartidores que hay un producto disponible
     }
 
@@ -28,7 +29,7 @@ public class MiniBodega {
         }
         Producto temp = producto;
         producto = null;  // Vaciar la minibodega
-        notifyAll();  // Notificar al despachador que la minibodega está vacía
+        notifyAll();  // Notificar al despachador que la minibodega estï¿½ vacï¿½a
         return temp;
     }
 }
