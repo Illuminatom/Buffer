@@ -1,3 +1,4 @@
+package src;
 
 
 public class MiniBodega {
@@ -7,7 +8,7 @@ public class MiniBodega {
         while (producto != null) {
             try {
                 // Espera hasta que la minibodega este vacia
-                System.out.println("La miniBodega esta vacia, esperando...");
+                System.out.println("La miniBodega esta llena, a dormir...");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -22,11 +23,13 @@ public class MiniBodega {
         while (producto == null) {
             try {
                 // Espera hasta que haya un producto en la minibodega
+            	System.out.println("La miniBodega esta vacia, a dormir...");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        System.out.println("Repartidor entrega el producto de la miniBodega");
         Producto temp = producto;
         producto = null;  // Vaciar la minibodega
         notifyAll();  // Notificar al despachador que la minibodega est� vac�a

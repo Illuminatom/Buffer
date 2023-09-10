@@ -1,3 +1,4 @@
+package src;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -23,9 +24,8 @@ public class Bodega {
             }
         }
         productos.add(producto);
-        System.out.println("Se agrego un producto con id "+producto.getId()+" a la bodega.");
-        System.out.println("\tEspacios restantes en la bodega: "+ (capacidad-getCantidadActual())+"\n");
-        notifyAll();  // Notificar a los consumidores (o al despachador) que hay un nuevo producto
+        System.out.println("Se agrego un producto con id "+producto.getId()+" a la bodega. \n Espacios restantes en la bodega: "+ (capacidad-getCantidadActual()));
+        notifyAll();  // Notificar al despachador que hay un nuevo producto
     }
     
     public synchronized Producto retirar() {
