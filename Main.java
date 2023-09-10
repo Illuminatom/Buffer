@@ -1,4 +1,4 @@
-package src;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class Main {
         List<Integer> distribucion = distribuirProductos(numProductos, M);
         
 
-        // Creaci�n de bodega y mini bodega
+        // Creacion de bodega y mini bodega
         Bodega bodegaPrincipal = new Bodega(TAM);
         MiniBodega minibodega = new MiniBodega();  // MiniBodega tiene una capacidad fija de 1 producto seg�n lo indicado
 
@@ -60,7 +60,7 @@ public class Main {
         // Creacion de productores
         Productor[] productores = new Productor[M];
         for(int i = 0; i < M; i++) {
-            System.out.println("Se inicia el Thread con id " + i);
+            System.out.println("Se inicia el productor con id " + i);
             productores[i] = new Productor(i, bodegaPrincipal, distribucion.get(i));
             productores[i].start(); 
         }
@@ -68,11 +68,12 @@ public class Main {
         // Creacion de repartidores
         Repartidor[] repartidores = new Repartidor[N];
         for(int i = 0; i < N; i++) {
-            repartidores[i] = new Repartidor(minibodega, numProductos);
+            System.out.println("Se inicia el repartidor con ud "+i);
+            repartidores[i] = new Repartidor(i , minibodega, numProductos);
             repartidores[i].start();
         }
 
-        // A partir de aqu�, puedes comenzar la simulacigica deseada.
+        // A partir de aqui, comienza la simulacion deseada.
         scanner.close();
         
         

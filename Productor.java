@@ -1,4 +1,4 @@
-package src;
+
 
 public class Productor extends Thread {
     private int id;
