@@ -1,4 +1,4 @@
-
+package src;
 
 
 public class Producto {
@@ -12,9 +12,9 @@ public class Producto {
         this.entregado = false;  
     }
 
-    public synchronized void entregar() {
+    public synchronized void entregar(int tiempo) {
         this.entregado = true;
-        System.out.println("El producto con el id "+id+" ha sido entregado, se notificara al productor\n");
+        System.out.println("El producto con el id "+id+" ha sido entregado en " + tiempo+ "segundos \n");
         notify();  // notificar al productor
     }
     

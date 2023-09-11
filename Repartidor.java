@@ -1,4 +1,4 @@
-
+package src;
 
 import java.util.Random;
 
@@ -26,14 +26,18 @@ public class Repartidor extends Thread {
 
             // Simular el tiempo de entrega
             try {
-                producto.entregar();
+            	System.out.println("Entregando producto con id "+producto.getId()+".......");
+            	int tiempoEntrega = 3000 + random.nextInt(7001); // Valor entre 3000ms (3s) y 11000ms (11s) - para obtener rango [3,10] segundos.	
+            	Thread.sleep(tiempoEntrega);
+                producto.entregar(tiempoEntrega);
+                
                 synchronized(LOCK) {
                     entregados++;
                 }
-                    int tiempoEntrega = 3000 + random.nextInt(7001); // Valor entre 3000ms (3s) y 11000ms (11s) - para obtener rango [3,10] segundos.
-                    System.out.println("Entregando producto con id "+producto.getId()+".......");
-                    Thread.sleep(tiempoEntrega);
-                    System.out.println("Han sido entregados "+ entregados+" productos\n");
+                   
+                    
+                    
+                   
 
                 
             } catch (InterruptedException e) {

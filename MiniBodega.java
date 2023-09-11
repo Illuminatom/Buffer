@@ -1,5 +1,4 @@
-
-
+package src;
 
 public class MiniBodega {
     private Producto producto;
@@ -29,7 +28,7 @@ public class MiniBodega {
                 e.printStackTrace();
             }
         }
-        System.out.println("Repartidor entrega el producto con id "+producto.getId()+" de la miniBodega\n");
+        System.out.println("Repartidor saca el producto con id "+producto.getId()+" de la miniBodega\n");
         Producto temp = producto;
         producto = null;  // Vaciar la minibodega
         notifyAll();  // Notificar al despachador que la minibodega esta vacia
