@@ -2,12 +2,12 @@ package src;
 
 
 public class Producto {
-    private int id;
+    private String id;
     private Productor productor;
     private boolean entregado;
 
-    public Producto(int id, Productor productor) {
-        this.id = id;
+    public Producto(Productor productor) {
+        this.id = productor.getIdentificador()+"-"+productor.getProducidos();
         this.productor = productor;
         this.entregado = false;  
     }
@@ -25,7 +25,7 @@ public class Producto {
         }
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 }

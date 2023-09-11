@@ -61,7 +61,7 @@ public class Main {
         Productor[] productores = new Productor[M];
         for(int i = 0; i < M; i++) {
             System.out.println("Se inicia el productor con id " + i);
-            productores[i] = new Productor(i, bodegaPrincipal, distribucion.get(i));
+            productores[i] = new Productor(Integer.toString(i), bodegaPrincipal, distribucion.get(i));
             productores[i].start(); 
         }
 

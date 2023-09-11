@@ -12,7 +12,7 @@ public class Bodega {
         this.productos = new LinkedList<>();
     }
     
-    public synchronized void agregar(Producto producto, int id) {
+    public synchronized void agregar(Producto producto, String id) {
         System.out.println("El productor con id " + id + " trata de agregar un producto con id "+producto.getId()+" a la bodega");
         while (productos.size() == capacidad) {
             try {

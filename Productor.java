@@ -1,19 +1,24 @@
 package src;
 
 public class Productor extends Thread {
-    private int id;
+    private String identificador;
     private Bodega bodega;
     private Producto productoActual;
     private int numeroAProducir;
     private int producidos;
 
-    public Productor(int id, Bodega bodega, int numProductos) {
-        this.id = id;
+    public Productor(String id, Bodega bodega, int numProductos) {
+        this.identificador = id;
         this.bodega = bodega;
         numeroAProducir = numProductos;
         producidos =0;
     }
-  
+    public String getIdentificador() {
+        return identificador;
+    }
+    public int getProducidos() {
+        return producidos;
+    }
 
     @Override
     public void run() {
@@ -28,14 +33,14 @@ public class Productor extends Thread {
             }
 
             // Producir un nuevo producto
-            productoActual = new Producto(id, this);
-            bodega.agregar(productoActual, id);
+            productoActual = new Producto(this);
+            bodega.agregar(productoActual, identificador);
             producidos += 1;
 
             // Luego, deberías tener lógica para que el Despachador mueva los productos y así sucesivamente.
         }
         
-        System.out.println("Productor " + id + " produjo todos sus correspondientes y terminará su ejecución");
+        System.out.println("Productor " + identificador + " produjo todos sus correspondientes y terminará su ejecución");
     }
     
 }
