@@ -1,4 +1,4 @@
-package src;
+
 
 public class Despachador extends Thread {
     private Bodega bodegaPrincipal;

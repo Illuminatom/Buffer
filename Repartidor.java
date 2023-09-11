@@ -1,4 +1,4 @@
-package src;
+
 
 import java.util.Random;
 
@@ -22,32 +22,37 @@ public class Repartidor extends Thread {
     public void run() {
         while (entregados<total) {
             // Retirar producto de la minibodega
-            Producto producto = miniBodega.retirar();
+            Producto producto = miniBodega.retirar(this);
 
             // Simular el tiempo de entrega
-            try {
+            if(producto != null){
+                try {
+                synchronized(LOCK) {
+                    entregados++;
+                }
             	System.out.println("Entregando producto con id "+producto.getId()+".......");
             	int tiempoEntrega = 3000 + random.nextInt(7001); // Valor entre 3000ms (3s) y 11000ms (11s) - para obtener rango [3,10] segundos.	
             	Thread.sleep(tiempoEntrega);
                 producto.entregar(tiempoEntrega);
                 
-                synchronized(LOCK) {
-                    entregados++;
-                }
                    
-                    
-                    
-                   
-
-                
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }}
 
             // Notificar al productor que el producto ha sido entregado
             
-
         }
+
         System.out.println("El repartidor con id "+this.id+" termino la ejecucion...");
+        miniBodega.despertarDormidos();
+    }
+
+    public int getEntregados() {
+        return entregados;
+    }
+
+    public int getTotal() {
+        return total;
     }
 }

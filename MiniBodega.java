@@ -1,4 +1,3 @@
-package src;
 
 public class MiniBodega {
     private Producto producto;
@@ -18,8 +17,11 @@ public class MiniBodega {
         notify();  // Notificar a los repartidores que hay un producto disponible
     }
 
-    public synchronized Producto retirar() {
-        while (producto == null) {
+    public synchronized void despertarDormidos(){
+        notifyAll();   //Despierta a los repartidores que quedaron dormidos despues de que todos los productos se entregaran   
+    }
+    public synchronized Producto retirar(Repartidor repartidor) {
+        while (producto == null && repartidor.getTotal() != repartidor.getEntregados()) {
             try {
                 // Espera hasta que haya un producto en la minibodega
             	System.out.println("La miniBodega esta vacia, a dormir...\n");
@@ -28,7 +30,8 @@ public class MiniBodega {
                 e.printStackTrace();
             }
         }
-        System.out.println("Repartidor saca el producto con id "+producto.getId()+" de la miniBodega\n");
+        if(producto != null)
+            System.out.println("Repartidor saca el producto con id "+producto.getId()+" de la miniBodega\n");
         Producto temp = producto;
         producto = null;  // Vaciar la minibodega
         notifyAll();  // Notificar al despachador que la minibodega esta vacia
